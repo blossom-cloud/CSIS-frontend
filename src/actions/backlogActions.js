@@ -13,7 +13,7 @@ export const addProjectTask = (
   history
 ) => async dispatch => {
   try {
-    await axios.post(`/api/backlog/${backlog_id}`, project_task);
+    await axios.post(`https://csis-backend-production.up.railway.app/api/backlog/${backlog_id}`, project_task);
     history.push(`/projectBoard/${backlog_id}`);
     dispatch({
       type: GET_ERRORS,
@@ -29,7 +29,7 @@ export const addProjectTask = (
 
 export const getBacklog = backlog_id => async dispatch => {
   try {
-    const res = await axios.get(`/api/backlog/${backlog_id}`);
+    const res = await axios.get(`https://csis-backend-production.up.railway.app/api/backlog/${backlog_id}`);
     dispatch({
       type: GET_BACKLOG,
       payload: res.data
@@ -48,7 +48,7 @@ export const getProjectTask = (
   history
 ) => async dispatch => {
   try {
-    const res = await axios.get(`/api/backlog/${backlog_id}/${pt_id}`);
+    const res = await axios.get(`https://csis-backend-production.up.railway.app/api/backlog/${backlog_id}/${pt_id}`);
     dispatch({
       type: GET_PROJECT_TASK,
       payload: res.data
@@ -65,7 +65,7 @@ export const updateProjectTask = (
   history
 ) => async dispatch => {
   try {
-    await axios.patch(`/api/backlog/${backlog_id}/${pt_id}`, project_task);
+    await axios.patch(`https://csis-backend-production.up.railway.app/api/backlog/${backlog_id}/${pt_id}`, project_task);
     history.push(`/projectBoard/${backlog_id}`);
     dispatch({
       type: GET_ERRORS,
@@ -85,7 +85,7 @@ export const deleteProjectTask = (backlog_id, pt_id) => async dispatch => {
       `You are deleting project task ${pt_id}, this action cannot be undone`
     )
   ) {
-    await axios.delete(`/api/backlog/${backlog_id}/${pt_id}`);
+    await axios.delete(`https://csis-backend-production.up.railway.app/api/backlog/${backlog_id}/${pt_id}`);
     dispatch({
       type: DELETE_PROJECT_TASK,
       payload: pt_id
